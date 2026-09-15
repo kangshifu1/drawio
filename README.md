@@ -6,7 +6,7 @@
 
 这是基于 Draw.io 31.4.5 的个人维护分支，**非官方发布，与 draw.io 官方无隶属关系或背书关系**。桌面应用使用独立名称与图标：Page Tree Desktop。
 
-[下载安装包](https://github.com/kangshifu1/drawio/releases/tag/v31.4.5-page-tree.1) · [使用说明](PAGE-TREE.md) · [安装说明](docs/INSTALL.md) · [更新日志](CHANGELOG-PAGE-TREE.md) · [源码构建](packaging/README.md)
+[下载安装包](https://github.com/kangshifu1/drawio/releases/tag/v31.4.5-page-tree.1) · [使用说明](PAGE-TREE.md) · [安装说明](docs/INSTALL.md) · [更新日志](CHANGELOG-PAGE-TREE.md) · [源码构建](packaging/README.md) · [数据结构规范](docs/PAGE-TREE-DATA-SPEC.md) · [示例图纸](examples/page-tree-template.drawio)
 
 ![独立的多级页面导航面板](tests/sheet-tree-preview.png)
 
