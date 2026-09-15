@@ -268,7 +268,7 @@ function checkAllLoaded()
 {
     if (mxScriptsLoaded && mxWinLoaded)
     {
-        App.main();				
+        App.main(window.installSheetTree);
     }
 };
 

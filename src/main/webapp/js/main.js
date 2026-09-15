@@ -17,6 +17,6 @@ if (typeof AJS === 'undefined') // conf insists on pulling in this file into bat
 	}
 	else
 	{
-		App.main();
+		App.main(window.installSheetTree);
 	}
 }
