@@ -27,3 +27,9 @@ bash packaging/build-desktop.sh win  # Windows x64 NSIS EXE
 - Windows 默认当前用户安装，不使用官方发布者签名。
 
 源码和上述配方允许重新构建功能等效包；不同工具版本、时间戳和签名会影响二进制哈希。
+
+## 打包隐私检查
+
+配置排除本机开发测试脚本、构建笔记、日志、环境文件、Finder 元数据和历史 dist 产物。构建后应解包检查 ASAR，确认不存在 personal-tests、当前构建用户主目录路径或账号凭据，再发布附件。
+
+运行 `node --test tests/packaging-privacy.test.cjs` 检查两个平台的排除规则。

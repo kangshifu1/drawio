@@ -17,7 +17,13 @@
     "drawio/src/main/webapp/js/diagramly/SheetTree.js",
     "!drawio/.git{,/**}",
     "!drawio/docs{,/**}",
-    "!drawio/tests{,/**}"
+    "!drawio/tests{,/**}",
+    "!personal-tests{,/**}",
+    "!BUILD-PAGE-TREE.md",
+    "!**/.DS_Store",
+    "!**/*.log",
+    "!**/.env{,.*}",
+    "!dist{,/**}"
   ],
   "directories": {
     "output": "./dist"

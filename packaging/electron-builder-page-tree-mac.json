@@ -18,7 +18,12 @@
     "!drawio/.git{,/**}",
     "!drawio/docs{,/**}",
     "!drawio/tests{,/**}",
-    "!personal-tests{,/**}"
+    "!personal-tests{,/**}",
+    "!BUILD-PAGE-TREE.md",
+    "!**/.DS_Store",
+    "!**/*.log",
+    "!**/.env{,.*}",
+    "!dist{,/**}"
   ],
   "artifactName": "${productName}-${arch}-${version}.${ext}",
   "directories": {
