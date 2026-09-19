@@ -70,7 +70,8 @@ if (window.location.hash != null && window.location.hash.substring(0, 2) == '#P'
 
 // Global variable for desktop
 var mxIsElectron = navigator.userAgent != null && navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && 
-                    navigator.userAgent.indexOf(' draw.io/') > -1;
+                    (navigator.userAgent.indexOf(' draw.io/') > -1 ||
+                     navigator.userAgent.indexOf(' PageTreeDesktop/') > -1);
 
 // Redirects page if required
 if (urlParams['dev'] != '1')

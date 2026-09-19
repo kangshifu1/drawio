@@ -4,7 +4,8 @@
  */
 var mxIsElectron = navigator.userAgent != null &&
 	navigator.userAgent.toLowerCase().indexOf(' electron/') > -1 && 
-	navigator.userAgent.indexOf(' draw.io/') > -1;
+	(navigator.userAgent.indexOf(' draw.io/') > -1 ||
+	navigator.userAgent.indexOf(' PageTreeDesktop/') > -1);
 var GOOGLE_APPS_MAX_AREA = 25000000;
 var GOOGLE_SHEET_MAX_AREA = 1000000; // The maximum number of pixels is 1 million.
 // Maximum number of pages in the print output so that extreme cell
