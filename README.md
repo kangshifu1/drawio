@@ -1,5 +1,7 @@
 # Page Tree Desktop · 页面树增强版
 
+Windows 用户：遇到关闭按钮无响应时，请试用[第 3 版关闭修复包](https://github.com/kangshifu1/drawio/releases/tag/v31.4.5-page-tree.3)。本版已验证共享关闭流程，仍需 Windows 实机反馈。
+
 **页面太多找不到？把 Draw.io 的 sheet 整理成能搜索、能折叠的多级项目树。**
 
 面向多页面流程图、业务模块设计和项目文档。工具栏最左侧一键展开独立页面面板，按父子关系组织页面，点击即可跳转。

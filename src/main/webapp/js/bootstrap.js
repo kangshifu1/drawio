@@ -333,9 +333,14 @@ else
         {
             mxscript('js/app.min.js', function()
             {
-                mxScriptsLoaded = true;
-                checkAllLoaded();
-                
+                // Desktop init installs the close/save IPC listeners. Never create
+                // the UI before those overrides are loaded, even on a warm cache.
+                if (!mxIsElectron)
+                {
+                    mxScriptsLoaded = true;
+                    checkAllLoaded();
+                }
+
                 // Electron
                 if (mxIsElectron)
                 {
@@ -363,7 +368,11 @@ else
                                         // defined.
                                         mxscript('js/plantuml/drawio-plantuml.min.js', function()
                                         {
-                                            mxscript('js/PostConfig.js');
+                                            mxscript('js/PostConfig.js', function()
+                                            {
+                                                mxScriptsLoaded = true;
+                                                checkAllLoaded();
+                                            });
                                         });
                                     });
                                 });
