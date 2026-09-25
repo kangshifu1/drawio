@@ -130,6 +130,29 @@
 			finally { graph.model.endUpdate(); }
 		});
 		var rename = button('重命名', tools, function() { if (ui.currentPage) ui.renamePage(ui.currentPage); });
+		var remove = button('删除页面', tools, function()
+		{
+			var page = ui.currentPage;
+			if (!editable() || !page || ui.pages.length <= 1) return;
+			ui.confirm('删除页面“' + page.getName() + '”？该页内容将被删除，子页面保留并移至顶级。可通过撤销恢复。', function()
+			{
+				// A confirmation can outlive the current document or its edit permissions.
+				if (!editable() || ui.pages.indexOf(page) < 0 || ui.pages.length <= 1) return;
+				graph.stopEditing(false);
+				graph.model.beginUpdate();
+				try
+				{
+					ui.pages.forEach(function(childPage)
+					{
+						if (childPage.node.getAttribute(attribute) === page.getId())
+							graph.model.execute(new ParentChange(childPage, null));
+					});
+					ui.removePage(page);
+				}
+				finally { graph.model.endUpdate(); }
+			}, null, '删除页面');
+		});
+		remove.title = '删除当前页面（至少保留一个页面）';
 		var label = document.createElement('label'); label.textContent = '当前页的上级'; panel.appendChild(label);
 		var select = document.createElement('select'); select.setAttribute('aria-label', '当前页的上级');
 		label.appendChild(select);
@@ -255,6 +278,7 @@
 			var current = ui.currentPage && tree.nodes.get(ui.currentPage.getId());
 			select.value = current && current.parent || '';
 			add.disabled = !editable(); child.disabled = rename.disabled = select.disabled = !editable() || !current;
+			remove.disabled = !editable() || !current || pages.length <= 1;
 		}
 		function reveal()
 		{

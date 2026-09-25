@@ -84,8 +84,35 @@ const assert = require('node:assert/strict');
  await page.getByLabel('搜索页面',{exact:true}).press('Escape');
  assert.equal(await page.locator('.geSheetTree').isVisible(),false);
  await page.getByRole('button',{name:'项目页面',exact:true}).click();
+
+ // Delete through the actual navigation controls, preserving children and undo.
+ await page.locator('.geSheetTreeName',{hasText:'生产计划'}).click();
+ await page.locator('.geSheetTreeTools').getByRole('button',{name:'删除页面',exact:true}).click();
+ await page.locator('.geDialog').getByRole('button',{name:'取消',exact:true}).click();
+ assert.equal(await page.evaluate(()=>testUi.pages.length),4);
+ await page.locator('.geSheetTreeTools').getByRole('button',{name:'删除页面',exact:true}).click();
+ await page.locator('.geDialog').getByRole('button',{name:'删除页面',exact:true}).click();
+ assert.equal(await page.evaluate(()=>testUi.pages.length),3);
+ assert.equal(await page.evaluate(()=>testUi.pages.find(p=>p.getId()==='inspection').node.hasAttribute('sheet-parent')),false);
+ assert.equal(await page.locator('[data-page-id="inspection"]').getAttribute('aria-level'),'1');
+ await page.evaluate(()=>testUi.actions.get('undo').funct());
+ assert.equal(await page.evaluate(()=>testUi.pages.length),4);
+ assert.equal(await page.locator('[data-page-id="inspection"]').getAttribute('aria-level'),'3');
+ await page.evaluate(()=>testUi.actions.get('redo').funct());
+ assert.equal(await page.evaluate(()=>testUi.pages.length),3);
+ await page.evaluate(()=>testUi.actions.get('undo').funct());
+ await page.evaluate(()=>{testUi.editor.graph.setEnabled(false);testUi.sheetTree.render();});
+ assert.equal(await page.locator('.geSheetTreeTools').getByRole('button',{name:'删除页面',exact:true}).isDisabled(),true);
+ await page.evaluate(()=>{testUi.editor.graph.setEnabled(true);testUi.sheetTree.render();});
+ const beforeSingle = await page.evaluate(()=>testUi.getFileData(true));
+ await page.evaluate(()=>{
+  const xml='<mxfile><diagram id="only" name="唯一页面"><mxGraphModel><root><mxCell id="0"/><mxCell id="1" parent="0"/></root></mxGraphModel></diagram></mxfile>';
+  testUi.fileLoaded(new LocalFile(testUi,xml,'single.drawio'));
+ });
+ assert.equal(await page.locator('.geSheetTreeTools').getByRole('button',{name:'删除页面',exact:true}).isDisabled(),true);
+ await page.evaluate(xml=>testUi.fileLoaded(new LocalFile(testUi,xml,'页面树演示.drawio')),beforeSingle);
  await page.screenshot({path:'tests/sheet-tree-preview.png'});
- console.log(JSON.stringify({status:'PASS',checks:['navigation','reparent','undo/redo','dirty flag','save/reopen','collapse/search','create child undo/redo','rename','drag/drop','cycle rejection','delete parent/undo','read-only','toolbar toggle','independent panel layout at 1090x678','palette resizing','close/Escape'],pageErrors:errors}));
+ console.log(JSON.stringify({status:'PASS',checks:['navigation','reparent','undo/redo','dirty flag','save/reopen','collapse/search','create child undo/redo','rename','drag/drop','cycle rejection','delete parent/undo','read-only','toolbar toggle','independent panel layout at 1090x678','palette resizing','close/Escape','delete confirmation/cancel','delete parent with children retained','delete undo/redo','delete read-only/last-page guards'],pageErrors:errors}));
  assert.deepEqual(errors,[]);
  await browser.close();
 })().catch(e=>{console.error(e); process.exit(1);});

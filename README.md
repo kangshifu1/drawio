@@ -8,7 +8,7 @@ Windows 用户：遇到关闭按钮无响应时，请试用[第 3 版关闭修�
 
 这是基于 Draw.io 31.4.5 的个人维护分支，**非官方发布，与 draw.io 官方无隶属关系或背书关系**。桌面应用使用独立名称与图标：Page Tree Desktop。
 
-[下载安装包](https://github.com/kangshifu1/drawio/releases/tag/v31.4.5-page-tree.2) · [使用说明](PAGE-TREE.md) · [安装说明](docs/INSTALL.md) · [更新日志](CHANGELOG-PAGE-TREE.md) · [源码构建](packaging/README.md) · [数据结构规范](docs/PAGE-TREE-DATA-SPEC.md) · [示例图纸](examples/page-tree-template.drawio)
+[下载安装包](https://github.com/kangshifu1/drawio/releases/tag/v31.4.5-page-tree.4) · [使用说明](PAGE-TREE.md) · [安装说明](docs/INSTALL.md) · [更新日志](CHANGELOG-PAGE-TREE.md) · [源码构建](packaging/README.md) · [数据结构规范](docs/PAGE-TREE-DATA-SPEC.md) · [示例图纸](examples/page-tree-template.drawio)
 
 ![独立的多级页面导航面板](tests/sheet-tree-preview.png)
 
@@ -23,7 +23,7 @@ Windows 用户：遇到关闭按钮无响应时，请试用[第 3 版关闭修�
 
 ## 下载与开始使用
 
-前往 [最新修复版本](https://github.com/kangshifu1/drawio/releases/tag/v31.4.5-page-tree.2)，选择 Mac Apple 芯片、Mac Intel 或 Windows x64 安装包。打开图纸，点击工具栏最左侧树形图标，即可设置页面层级。
+前往 [最新修复版本](https://github.com/kangshifu1/drawio/releases/tag/v31.4.5-page-tree.4)，选择 Mac Apple 芯片、Mac Intel 或 Windows x64 安装包。打开图纸，点击工具栏最左侧树形图标，即可设置页面层级。
 
 安装包为个人构建：Mac 未做 Apple 开发者签名与公证，Windows 未做发布者签名，安装时系统可能提示。Windows 尚未经过实机安装验证。本版适合试用和反馈，详见 [安装说明与验证范围](docs/INSTALL.md)。
 
@@ -96,3 +96,6 @@ Chrome 123+, Firefox 120+, Safari 17.5+, Opera 109+, Edge 123+, WebView Android 
 draw.io is a registered EU trademark (#018062448).
 
 Do not use the draw.io name or logo in ways that suggest affiliation with, endorsement by, or sponsorship by draw.io. Do not use draw.io logos for your own business, product, project, domain, or social media presence. Do not modify the draw.io logos. Use of draw.io trademarks requires prior written permission.
+## 页面树删除
+
+选中左侧页面树中的页面，点击面板底部“删除页面”，确认后删除该页及其图形内容。直接子页面移至顶级，其下级结构保留。可通过撤销恢复页面及原层级。只读状态和仅剩一个页面时禁止删除。

@@ -41,3 +41,7 @@ node tests/sheet-tree.browser.cjs
 ## 交付范围
 
 提供本地网页版源码及 Mac（Apple 芯片 / Intel）、Windows x64 个人构建安装包，下载见 [Releases](https://github.com/kangshifu1/drawio/releases)。桌面构建说明见 [packaging/README.md](packaging/README.md)。父子结构限于单个文件内，暂不包含独立文件夹、跨文件项目管理或层级协作同步。通过其他编辑器再次保存时，自定义属性是否保留取决于该编辑器行为。
+
+## 页面树删除
+
+选中左侧页面树中的页面，点击面板底部“删除页面”，确认后删除该页及其图形内容。直接子页面移至顶级，其下级结构保留。可通过撤销恢复页面及原层级。只读状态和仅剩一个页面时禁止删除。
